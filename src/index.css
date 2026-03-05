@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #060606;
+  --text: #F1FAEE;
+  --accent: #E63946;
+  --grey: #BFC7D5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Glass Panel ──────────────────────── */
+.glass-panel {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── HUD line ─────────────────────────── */
+.hud-line {
+  background: linear-gradient(90deg, #E63946, #BFC7D5);
+  height: 1px;
+  width: 100%;
+}
+
+/* ── HUD corner brackets ──────────────── */
+.hud-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: #E63946;
+  border-style: solid;
+  opacity: 0.7;
+}
+.hud-corner-tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
+.hud-corner-tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+.hud-corner-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+.hud-corner-br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+
+/* ── Scanline overlay ─────────────────── */
+.scanline-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ── Canvas image quality boost ───────── */
+canvas {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* ── Custom scrollbar ─────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #060606;
+}
+::-webkit-scrollbar-thumb {
+  background: #E63946;
+  border-radius: 2px;
+}
+
+/* ── Utility classes ──────────────────── */
+.font-display { font-family: 'Orbitron', sans-serif; }
+.font-mono-custom { font-family: 'Space Mono', monospace; }
+
+.text-gradient {
+  background: linear-gradient(135deg, #F1FAEE 0%, #BFC7D5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-red {
+  background: linear-gradient(135deg, #E63946 0%, #ff8b94 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid #E63946;
+  color: #E63946;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #E63946;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.btn-primary:hover {
+  color: #F1FAEE;
+}
+
+.btn-primary:hover::before {
+  transform: scaleX(1);
+}
+
+/* ── Section spacing ──────────────────── */
+.section-padding {
+  padding: 6rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 8rem 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-padding {
+    padding: 10rem 6rem;
+  }
+}
+
